@@ -221,5 +221,4 @@ class Client(object):
         return eval_loss, eval_acc
         
 
-         
 

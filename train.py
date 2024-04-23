@@ -18,7 +18,6 @@ from server import *
 from client import *
 from datasets import *
 from utils import *
-from tent import *
 from weight_adjust_GA import *
 
 def train(conf, server_subject_id, client_subject_id, allserver_test_acc_list, trace_func=print, save_path = './checkpoint.pth'):
