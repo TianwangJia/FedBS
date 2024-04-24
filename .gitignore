@@ -1,6 +1,6 @@
-data/BNCI2014001/
-data/BNCI2014002/
-data/BNCI2015001/
-output/
+data/BNCI2014001/*
+data/BNCI2014002/*
+data/BNCI2015001/*
+output/*
 __pycache__/
 run_scripts/*.log
