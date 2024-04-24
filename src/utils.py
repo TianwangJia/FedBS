@@ -3,18 +3,10 @@ import numpy as np
 from scipy.linalg import fractional_matrix_power
 import torch.nn as nn
 
-# EA
-# def ea(x):
-    
-#     cov = np.zeros((x.shape[0], x.shape[1], x.shape[1]))
-#     for i in range(x.shape[0]):
-#         cov[i] = np.cov(x[i])
-#     refEA = np.mean(cov, 0)
-#     sqrtRefEA = fractional_matrix_power(refEA,-0.5)
-#     x = np.matmul(sqrtRefEA, x)
-#     return x
-
 def weights_init(m):
+    '''
+    Random initialization of the model's parameters
+    '''
     # classname = m.__class__.__name__
     # if classname.find("Conv") != -1:
     if isinstance(m,nn.Conv2d):
@@ -29,7 +21,35 @@ def weights_init(m):
         # torch.nn.init.xavier_uniform_(m.weight.data)
         torch.nn.init.xavier_normal_(m.weight.data)
 
+def CalculateOutSize(blocks, channels, samples):
+    '''
+    Calculate the output based on input size.
+    model is from nn.Module and inputSize is a array.
+    '''
+    x = torch.rand(1, 1, channels, samples)
+    for block in blocks:
+        block.eval()
+        x = block(x)
+    shape = x.shape[-2] * x.shape[-1]
+    return shape
 
+class Activation(nn.Module):
+    '''
+    ShallowConcNet Activation Function
+    '''
+    def __init__(self, type):
+        super(Activation, self).__init__()
+        self.type = type
+
+    def forward(self, input):
+        if self.type == 'square':
+            output = input * input
+        elif self.type == 'log':
+            output = torch.log(torch.clamp(input, min=1e-6)) 
+        else:
+            raise Exception('Invalid type !')
+
+        return output
 
 class EarlyStopping:
     """Early stops the training if validation loss doesn't improve after a given patience."""

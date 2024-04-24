@@ -1,0 +1,22 @@
+python3 -u ../src/train.py \
+--model eegnet \
+--sample_rate 250 \
+--F1 8 \
+--D 2 \
+--F2 16 \
+--class_num 2 \
+--channels 15 \
+--samples 1250 \
+--dropout 0.5 \
+--data_path '../data/BNCI2014002/' \
+--sub_id '1,2,3,4,5,6,7,8,9,10,11,12,13,14' \
+--output_path '../output' \
+--ea True \
+--global_epochs 200 \
+--sample_num 6 \
+--local_epochs 2 \
+--batch_size 16 \
+--lr 0.005 \
+--early False \
+--fedbs True \
+--rho 0.1 \
