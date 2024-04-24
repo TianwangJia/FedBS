@@ -55,7 +55,7 @@ class ZScoreNorm(object):
 
 
 class MIDataset(Dataset):
-    def __init__(self, random_state, subject_id: list ,root='./MIdata/BNCI2014001', mode='train', test_size=0.2,data_transform=None, label_transform=None) -> None:
+    def __init__(self, random_state, subject_id: list ,root='../data/BNCI2014001', mode='train', test_size=0.2,data_transform=None, label_transform=None) -> None:
         self.random_state = random_state
         self.subject_id = subject_id
         self.root = root
@@ -68,6 +68,7 @@ class MIDataset(Dataset):
         y = []
         for i in self.subject_id:
             data = scio.loadmat(self.root+'//'+str(i)+'.mat')
+            # Trimming the data so that the sample size is consistent across subjects
             if root=='./MIdata/BNCI2014004':
                 data['X'] = data['X'][:680]
                 data['y'] = data['y'][:680]
@@ -86,7 +87,6 @@ class MIDataset(Dataset):
             # y.append(data['y']) # Gauss
 
         self.data = np.array(X) #(subject,N,H,W)
-        # self.data = self.data.reshape(N*len(self.subject_id), C, T) #(N,H,W) 
         self.label = np.array(y)
         self.label = self.label.reshape(N*len(self.subject_id),-1)
         #transform
@@ -132,7 +132,7 @@ if __name__ == '__main__':
     label_transform = [
         ArrayToTensor()
     ] 
-    data = MIDataset(random_state=42, subject_id=[1,2,3,4,5,6,7,8], root='./MIdata/BNCI2014008', mode='all',data_transform=data_transform, label_transform=label_transform)
+    data = MIDataset(random_state=42, subject_id=[1,2,3,4,5,6,7,8], root='../data/BNCI2014008', mode='all',data_transform=data_transform, label_transform=label_transform)
     print(data.X_train.shape)
     print(type(data.X_train))
     print(data.y_val.shape)
