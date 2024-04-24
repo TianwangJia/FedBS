@@ -45,4 +45,3 @@ bash MI1_shallowconvnet_fedavg.sh > MI1_shallowconvnet_fedavg.log
 bash MI2_eegnet_fedavg.sh > MI2_eegnet_fedavg.log
 bash MI3_eegnet_fedavg.sh > MI3_eegnet_fedavg.log
 ```
-
