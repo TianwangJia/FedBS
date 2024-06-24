@@ -16,7 +16,7 @@ pip install -r requirements.txt
 
 ### Datasets
 
-Please use the `getdata.py` to download MI data from `moabb`.
+Please use the `get_data.py` to download MI data from `moabb`.
 
 ```bash
 cd ./data
@@ -40,8 +40,8 @@ bash MI1_eegnet_fedfa.sh > MI1_eegnet_fedfa.log
 bash MI1_eegnet_ga.sh > MI1_eegnet_ga.log
 ## Our approach FedBS: 
 bash MI1_eegnet_fedbs.sh > MI1_eegnet_fedbs.log
-bash MI1_deepconvnet_fedavg.sh > MI1_deepconvnet_fedavg.log
-bash MI1_shallowconvnet_fedavg.sh > MI1_shallowconvnet_fedavg.log
-bash MI2_eegnet_fedavg.sh > MI2_eegnet_fedavg.log
-bash MI3_eegnet_fedavg.sh > MI3_eegnet_fedavg.log
+bash MI1_deepconvnet_fedbs.sh > MI1_deepconvnet_fedbs.log
+bash MI1_shallowconvnet_fedbs.sh > MI1_shallowconvnet_fedbs.log
+bash MI2_eegnet_fedbs.sh > MI2_eegnet_fedbs.log
+bash MI3_eegnet_fedbs.sh > MI3_eegnet_fedbs.log
 ```
